@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "Opus Clip BJJ Post Automator",
+  "version": "1.0.0",
+  "description": "Automates and enhances Opus Clip post scheduling for BJJ content.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://clip.opus.pro/*",
+    "https://api.openai.com/*"
+  ],
+  "options_page": "options.html",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://clip.opus.pro/auto-post/calendar*"],
+      "js": ["content.js"],
+      "css": ["styles.css"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}

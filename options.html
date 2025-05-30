@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Opus Clip Automator Options</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    input[type="text"], input[type="password"] {
+      width: 95%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #status {
+      margin-top: 15px;
+      font-size: 0.9em;
+    }
+    .success {
+      color: green;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Opus Clip BJJ Post Automator Options</h1>
+    <label for="apiKey">ChatGPT API Key:</label>
+    <input type="password" id="apiKey" name="apiKey">
+
+    <label for="chatGPTModel" style="margin-top: 20px;">ChatGPT Model:</label>
+    <select id="chatGPTModel" name="chatGPTModel">
+      <option value="gpt-4.1-2025-04-14">GPT-4.1 (gpt-4.1-2025-04-14)</option>
+      <option value="gpt-4o">GPT-4o (Latest, Omni model)</option>
+      <option value="gpt-4-turbo">GPT-4-Turbo (Fast, Vision capabilities)</option>
+      <option value="gpt-3.5-turbo">GPT-3.5-Turbo (Very Fast, Cost-effective)</option>
+      <!-- Add other specific model versions if desired, e.g., gpt-4-0125-preview -->
+    </select>
+
+    <button id="save" style="margin-top: 20px;">Save Settings</button>
+    <div id="status"></div>
+  </div>
+  <script src="options.js"></script>
+</body>
+</html>

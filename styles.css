@@ -1,0 +1,19 @@
+/* styles.css for Opus Clip BJJ Post Automator */
+
+/* Placeholder for any custom styles the content script might need.
+   For example, if we add a status indicator directly onto the Opus Clip page:
+*/
+
+/*
+.automator-status-indicator {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  background-color: #333;
+  color: white;
+  border-radius: 4px;
+  font-size: 12px;
+  z-index: 10000;
+}
+*/
