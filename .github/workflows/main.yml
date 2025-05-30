@@ -1,0 +1,62 @@
+name: Build and Package Chrome Extension
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build_and_package:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # Optional: Setup Node.js (if you add linting/testing with JS tools later)
+    # - name: Setup Node.js
+    #   uses: actions/setup-node@v4
+    #   with:
+    #     node-version: '20' # Or your preferred LTS version
+
+    # Optional: Install dependencies (if you have a package.json)
+    # - name: Install dependencies
+    #   run: npm install # or yarn install
+
+    # Optional: Linting (add after setting up ESLint)
+    # - name: Lint JavaScript
+    #   run: npm run lint # or your linting command
+
+    - name: Package Extension
+      run: |
+        mkdir -p extension_package
+        cp manifest.json extension_package/
+        cp background.js extension_package/
+        cp content.js extension_package/
+        cp options.html extension_package/
+        cp options.js extension_package/
+        cp popup.html extension_package/
+        cp popup.js extension_package/
+        cp styles.css extension_package/
+        # Create icons directory and copy icons if they exist (assuming they are in root for now)
+        # If you later move icons to an 'icons' folder, adjust this part
+        if [ -f icon16.png ] && [ -f icon48.png ] && [ -f icon128.png ]; then
+          mkdir -p extension_package/icons
+          cp icon16.png extension_package/icons/
+          cp icon48.png extension_package/icons/
+          cp icon128.png extension_package/icons/
+        elif [ -d icons ]; then
+          cp -r icons extension_package/
+        else
+          echo "Warning: Icon files not found in root or 'icons' directory."
+        fi
+        cd extension_package
+        zip -r ../opus_clip_automator_extension.zip .
+        cd ..
+        
+    - name: Upload Extension Package
+      uses: actions/upload-artifact@v4
+      with:
+        name: opus-clip-automator-extension
+        path: opus_clip_automator_extension.zip
