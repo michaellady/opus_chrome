@@ -27,6 +27,8 @@ global.chrome = {
 };
 
 document.body.innerHTML = `
+  <input type="password" id="apiKey" />
+  <select id="chatGPTModel"><option value="gpt-4o"></option></select>
   <textarea id="boilerplate"></textarea>
   <button id="save"></button>
   <div id="status"></div>
