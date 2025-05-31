@@ -68,6 +68,7 @@ jobs:
 
     - name: Create GitHub Release
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      id: create_release # Added id here
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -83,7 +84,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }} # This comes from the actions/create-release step output
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # Correctly referencing the output
         asset_path: ./opus_clip_automator_extension.zip
         asset_name: opus_clip_automator_extension-${{ env.TAG_NAME }}.zip
         asset_content_type: application/zip
