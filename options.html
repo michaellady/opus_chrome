@@ -49,6 +49,15 @@
     .error {
       color: red;
     }
+    textarea {
+      width: 95%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-family: monospace;
+      resize: vertical;
+    }
   </style>
 </head>
 <body>
@@ -65,6 +74,9 @@
       <option value="gpt-3.5-turbo">GPT-3.5-Turbo (Very Fast, Cost-effective)</option>
       <!-- Add other specific model versions if desired, e.g., gpt-4-0125-preview -->
     </select>
+
+    <label for="boilerplate" style="margin-top: 20px;">Boilerplate Text:</label>
+    <textarea id="boilerplate" name="boilerplate" rows="7"></textarea>
 
     <button id="save" style="margin-top: 20px;">Save Settings</button>
     <div id="status"></div>

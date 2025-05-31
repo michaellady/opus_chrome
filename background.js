@@ -147,17 +147,15 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       if (result.error) {
         sendResponse({ error: result.error });
       } else {
-        const boilerplate = `
-FOLLOW @mikelady to learn how I help busy professionals become semi-pro at BJJ.
-
-Comment “sandbox” below to see how this game fits into the bigger picture in my @sandboxbjj course + community
-📸 @vthehoneybadger
-#bjj #grappling #submissiongrappling #jiujitsu #adcc
-        `.replace(/Jiu-Jitsu/gi, 'BJJ').replace(/Jujitsu/gi, 'BJJ'); // Also replace in boilerplate
-
-        sendResponse({
-          transformed: result.transformed,
-          boilerplate: boilerplate.trim()
+        // Fetch boilerplate from chrome.storage.sync
+        chrome.storage.sync.get({
+          boilerplate: `FOLLOW @mikelady to learn how I help busy professionals become semi-pro at BJJ.\n\nComment “sandbox” below to see how this game fits into the bigger picture in my @sandboxbjj course + community\n📸 @vthehoneybadger\n#bjj #grappling #submissiongrappling #jiujitsu #adcc`
+        }, function(items) {
+          const boilerplate = items.boilerplate.replace(/Jiu-Jitsu/gi, 'BJJ').replace(/Jujitsu/gi, 'BJJ');
+          sendResponse({
+            transformed: result.transformed,
+            boilerplate: boilerplate.trim()
+          });
         });
       }
     });
