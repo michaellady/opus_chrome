@@ -55,8 +55,35 @@ jobs:
         zip -r ../opus_clip_automator_extension.zip .
         cd ..
         
-    - name: Upload Extension Package
+    - name: Upload Extension Package as Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: opus-clip-automator-extension
+        name: opus-clip-automator-extension-artifact # Differentiate from release asset name
         path: opus_clip_automator_extension.zip
+
+    - name: Create Release Tag
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push' # Only for pushes to main
+      id: create_tag
+      run: echo "TAG_NAME=v$(date +'%Y.%m.%d-%H%M%S')" >> $GITHUB_ENV
+
+    - name: Create GitHub Release
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ env.TAG_NAME }}
+        release_name: Release ${{ env.TAG_NAME }}
+        draft: false
+        prerelease: false
+
+    - name: Upload Release Asset
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This comes from the actions/create-release step output
+        asset_path: ./opus_clip_automator_extension.zip
+        asset_name: opus_clip_automator_extension-${{ env.TAG_NAME }}.zip
+        asset_content_type: application/zip
