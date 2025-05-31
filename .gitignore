@@ -1,0 +1,35 @@
+# Operating System files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Editor/IDE specific files
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.idea
+*.project
+*.classpath
+*.c9/*
+
+# Build artifacts (if any in the future)
+dist/
+build/
+out/
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+
+# Log files
+*.log
+logs/
