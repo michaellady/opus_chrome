@@ -67,7 +67,7 @@ describe('Options Script', () => {
         expect(chrome.storage.sync.set).toHaveBeenCalledWith({
           chatGPTApiKey: 'test-api-key-123',
           chatGPTModel: 'gpt-4o',
-          boilerplate: 'Test boilerplate text'
+          postBoilerplate: 'Test boilerplate text'
         }, expect.any(Function));
 
         // Verify success status
@@ -109,7 +109,7 @@ describe('Options Script', () => {
         cb({
           chatGPTApiKey: 'restored-api-key',
           chatGPTModel: 'gpt-4o',
-          boilerplate: 'Restored boilerplate text'
+          postBoilerplate: 'Restored boilerplate text'
         });
       });
 
@@ -160,7 +160,7 @@ describe('Options Script', () => {
     test('loads boilerplate from storage', done => {
       // Simulate restore_options
       chrome.storage.sync.get.mockImplementationOnce((defaults, cb) => {
-        cb({ boilerplate: 'Loaded from storage' });
+        cb({ postBoilerplate: 'Loaded from storage' });
       });
       document.dispatchEvent(new Event('DOMContentLoaded'));
       setTimeout(() => {
@@ -173,7 +173,7 @@ describe('Options Script', () => {
       document.getElementById('boilerplate').value = 'New boilerplate';
       document.getElementById('save').click();
       setTimeout(() => {
-        expect(mockStorage.boilerplate).toBe('New boilerplate');
+        expect(mockStorage.postBoilerplate).toBe('New boilerplate');
         done();
       }, 10);
     });
@@ -197,7 +197,7 @@ describe('Options Script', () => {
       document.getElementById('save').click();
 
       setTimeout(() => {
-        expect(mockStorage.boilerplate).toBe(longText);
+        expect(mockStorage.postBoilerplate).toBe(longText);
         done();
       }, 10);
     });
@@ -209,7 +209,7 @@ describe('Options Script', () => {
 
       setTimeout(() => {
         expect(mockStorage.chatGPTApiKey).toBe('key-with-special!@#$%^&*()_+');
-        expect(mockStorage.boilerplate).toBe('Text with emojis 🥋🔥 and special chars ñáéíóú');
+        expect(mockStorage.postBoilerplate).toBe('Text with emojis 🥋🔥 and special chars ñáéíóú');
         done();
       }, 10);
     });
