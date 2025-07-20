@@ -1,0 +1,210 @@
+# Page snapshot
+
+```yaml
+- main:
+  - button "notifications":
+    - img
+    - text: "22"
+  - img
+  - paragraph: 3,557
+  - button "Add more credits"
+  - complementary:
+    - button "Click to expand drawer":
+      - img
+    - button "Profile":
+      - img
+      - img
+    - button "Invite members":
+      - img
+    - paragraph: Create
+    - img
+    - img
+    - img
+    - paragraph: Post
+    - img
+    - img
+    - img
+    - img
+    - img
+    - img
+    - img
+  - img
+  - textbox "Input url"
+  - button "Upload file":
+    - img
+    - text: Upload
+  - button "Google Drive":
+    - img
+    - text: Google Drive
+  - button "Get clips in 1 click"
+  - img "Turn long video into viral shorts"
+  - text: Long to shorts
+  - img "Add captions only"
+  - text: AI Captions
+  - img "Upload your video to the Editor"
+  - text: New Video editor
+  - img "Enhance speech"
+  - text: New Enhance speech
+  - img "Reframe video only"
+  - text: AI Reframe
+  - img "Add B-Roll only"
+  - text: AI B-Roll
+  - img "Add Voice-over only"
+  - text: AI hook
+  - group:
+    - radio "All projects (0)" [checked]
+    - radio "Saved projects (0)"
+  - button "Favorite clips (0)"
+  - paragraph: 6.41 GB / 100 GB
+  - button "Auto-save"
+  - button "Auto-import Beta"
+  - link "woj_lock_focus.m4v":
+    - /url: /clip/P2071700Idq9
+    - img "thumbnail"
+    - text: New 26 days before expiring
+    - paragraph: woj_lock_focus.m4v
+    - button "Drop down":
+      - img
+    - text: ClipBasic
+  - link "top_hands_bottom_no_hands.m4v":
+    - /url: /clip/P2071700IarF
+    - img "thumbnail"
+    - text: New 26 days before expiring
+    - paragraph: top_hands_bottom_no_hands.m4v
+    - button "Drop down":
+      - img
+    - text: ClipBasic
+  - link "point_feet_away.m4v":
+    - /url: /clip/P2071700I4iB
+    - img "thumbnail"
+    - text: New 26 days before expiring
+    - paragraph: point_feet_away.m4v
+    - button "Drop down":
+      - img
+    - img "cat-sparks"
+    - text: ClipAnything
+  - link "pin_escapes_hard.m4v":
+    - /url: /clip/P2071700I2im
+    - img "thumbnail"
+    - text: New 26 days before expiring
+    - paragraph: pin_escapes_hard.m4v
+    - button "Drop down":
+      - img
+    - img "cat-sparks"
+    - text: ClipAnything
+  - link "look_ma_no_hands.m4v":
+    - /url: /clip/P2071700Hwnw
+    - img "thumbnail"
+    - text: New 26 days before expiring
+    - paragraph: look_ma_no_hands.m4v
+    - button "Drop down":
+      - img
+    - text: ClipBasic
+  - link "2_on_1_from_back.m4v":
+    - /url: /clip/P2071700HRf3
+    - img "thumbnail"
+    - text: New 26 days before expiring
+    - paragraph: 2_on_1_from_back.m4v
+    - button "Drop down":
+      - img
+    - text: ClipBasic
+  - link "white_belt_straight_ankle_lock.m4v":
+    - /url: /clip/P2071700HIJ0
+    - img "thumbnail"
+    - text: New 26 days before expiring
+    - paragraph: white_belt_straight_ankle_lock.m4v
+    - button "Drop down":
+      - img
+    - text: ClipBasic
+  - link "white_belt_chest_to_chest.m4v":
+    - /url: /clip/P2071700H3Fu
+    - img "thumbnail"
+    - text: New 26 days before expiring
+    - paragraph: white_belt_chest_to_chest.m4v
+    - button "Drop down":
+      - img
+    - text: ClipBasic
+  - link "how_to_wrestle_up_dogfight.m4v":
+    - /url: /clip/P2071700G9jz
+    - img "thumbnail"
+    - text: New 26 days before expiring
+    - paragraph: how_to_wrestle_up_dogfight.m4v
+    - button "Drop down":
+      - img
+    - text: ClipBasic
+  - link "how_to_shoot_beginner.m4v":
+    - /url: /clip/P2071700G0YB
+    - img "thumbnail"
+    - text: New 26 days before expiring
+    - paragraph: how_to_shoot_beginner.m4v
+    - button "Drop down":
+      - img
+    - text: ClipBasic
+  - link "how_to_peek_out.m4v":
+    - /url: /clip/P2071700FlKK
+    - img "thumbnail"
+    - text: New 26 days before expiring
+    - paragraph: how_to_peek_out.m4v
+    - button "Drop down":
+      - img
+    - text: ClipBasic
+  - link "how_to_octopus.m4v":
+    - /url: /clip/P2071700FFYW
+    - img "thumbnail"
+    - text: New 26 days before expiring
+    - paragraph: how_to_octopus.m4v
+    - button "Drop down":
+      - img
+    - text: ClipBasic
+  - link "avoid_sprawl_beginner.m4v":
+    - /url: /clip/P2071700F5T7
+    - img "thumbnail"
+    - text: New 26 days before expiring
+    - paragraph: avoid_sprawl_beginner.m4v
+    - button "Drop down":
+      - img
+    - text: ClipBasic
+  - link "get_second_hook_in.m4v":
+    - /url: /clip/P2071700EqeQ
+    - img "thumbnail"
+    - text: New 26 days before expiring
+    - paragraph: get_second_hook_in.m4v
+    - button "Drop down":
+      - img
+    - text: ClipBasic
+  - link "meditate_true_relaxation.m4v":
+    - /url: /clip/P2071700E8xo
+    - img "thumbnail"
+    - text: New 26 days before expiring
+    - paragraph: meditate_true_relaxation.m4v
+    - button "Drop down":
+      - img
+    - text: ClipBasic
+  - link "master_adcc_points.m4v":
+    - /url: /clip/P2071700Dxjq
+    - img "thumbnail"
+    - text: New 26 days before expiring
+    - paragraph: master_adcc_points.m4v
+    - button "Drop down":
+      - img
+    - text: ClipBasic
+  - paragraph:
+    - img "loading"
+  - text: MASTER OPUSCLIP
+  - region:
+    - group:
+      - img "thumbnail"
+    - group:
+      - img "thumbnail"
+    - group:
+      - img "thumbnail"
+    - group:
+      - img "thumbnail"
+    - group:
+      - img "thumbnail"
+  - button "Get support":
+    - paragraph:
+      - img
+      - text: Get support
+- alert: OpusClip - AI-powered Video Repurposing
+```

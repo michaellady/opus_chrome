@@ -33,3 +33,8 @@ out/
 # Log files
 *.log
 logs/
+
+*.local
+
+# Environment files
+.env.local
