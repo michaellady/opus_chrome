@@ -22,13 +22,13 @@ async function getChatGPTResponse(caption, apiKey, selectedModel) {
 - Struggle with getting your back taken?
 - Trouble finishing takedowns?
 - Hard time hand fighting? This game can help!
-- Don’t know how to set up takedowns? Circling can help!
+- Don't know how to set up takedowns? Circling can help!
 - Hold your partner down as long as possible!
-- Can’t get out of side control? Learn how to increase your mobility!
+- Can't get out of side control? Learn how to increase your mobility!
 - Keep Getting Caught With The Same Dumb Stuff?
 - Keep Losing Leg Lock Positioning?
 - Uncertain About What the Goals of Jiu-Jitsu Are?
-- Can’t Submit Anybody in Jiu-Jitsu? Play this game!
+- Can't Submit Anybody in Jiu-Jitsu? Play this game!
 - Injured? Train to minimize risk of injury with @sandboxbjj
 - Honestly evaluating injury risk in Jiu-Jitsu
 - Why 6am Jiu-Jitsu is the best
@@ -36,34 +36,34 @@ async function getChatGPTResponse(caption, apiKey, selectedModel) {
 - Struggle submitting your friends?
 - Hard time with Headquarters? This game can help!
 - Trouble with leg lock shootouts? This concept can help you stay safe!
-- Wrestling too confusing? Here’s a simple way to think about it!
-- Snapdowns not snapping? Here’s a way to improve them!
-- Uncertain about how Jiu-Jitsu works? Here’s the basic positions!
+- Wrestling too confusing? Here's a simple way to think about it!
+- Snapdowns not snapping? Here's a way to improve them!
+- Uncertain about how Jiu-Jitsu works? Here's the basic positions!
 - Struggle with pressure passing? Tackle pass can help!
 - Hard time hand fighting? Dominate with one simple trick!
 - Hard time getting mounted? Use the trap and roll!
-- Don’t know what to do when wrestling? This game can help!
+- Don't know what to do when wrestling? This game can help!
 - Trouble finishing straight ankle locks? Try this game to increase your finishing rate!
 - Getting sprawled on? Use what Wyatt Hendrickson did to beat Gable Steveson with the knee pound!
-- Wrestling too confusing? Push, circle, snap, and two-on-ones are all you need to dominate! Here’s how to simplify your wrestling game.
-- Can’t maintain Cross-Ashi? Play this game to improve your control!
-- Feel too amped up after training? Try taking one minute of meditation to “come down” and rest.
+- Wrestling too confusing? Push, circle, snap, and two-on-ones are all you need to dominate! Here's how to simplify your wrestling game.
+- Can't maintain Cross-Ashi? Play this game to improve your control!
+- Feel too amped up after training? Try taking one minute of meditation to "come down" and rest.
 - Tired of getting sprawled on? Use this game to improve finishing your shots!
-- Embrace the “gray area”, the “messy middle” where things don’t go perfectly but you still have to fight to attain and maintain postion.
+- Embrace the "gray area", the "messy middle" where things don't go perfectly but you still have to fight to attain and maintain postion.
 - Having a hard time getting to cross-ashi? Try playing this game!
 - Suck at Rubber Guard? Play this game to maintain the position better!
 - Suck at finishing from Rubber Guard? Play this game to work on your subs!
-- …And he didn’t even drill this once…
+- ...And he didn't even drill this once...
 - Suck at escaping pins? This easy concept will change everything!
 - Suck at escaping kneebars? This easy game will change everything! How to Escape Kneebars
 - Suck at half guard? This simple game will change everything! How to attain Rollie Pollie half guard posture
 - Suck at off balancing? This simple game will change everything! How to off balance from Half Guard
-- Suck at being heavy? Don’t touch the mat!
+- Suck at being heavy? Don't touch the mat!
 - Suck at knee cut passing like I do? This game can help!
 - Stuck in the worst case scenario mount? Face your fears with this game!
-- Don’t want to get brain damage? Want to see how your Jiu-Jitsu guard holds up with strikes safely? Play “don’t touch my face”!
+- Don't want to get brain damage? Want to see how your Jiu-Jitsu guard holds up with strikes safely? Play "don't touch my face"!
 - Suck at off-balancing your opponent? Play this half guard game!
-- Hate Front Headlock? Let’s spend time there with this game!
+- Hate Front Headlock? Let's spend time there with this game!
 - Suck at escaping Kimuras? This one is for you!
 `;
 
@@ -117,8 +117,8 @@ Now, transform this caption: "${caption}"`;
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "transformCaption" || request.action === "regenerateCaption") {
-    // Retrieve API key and selected model
-    chrome.storage.sync.get(['chatGPTApiKey', 'chatGPTModel'], async (storageData) => {
+    // Retrieve API key, selected model, and boilerplate
+    chrome.storage.sync.get(['chatGPTApiKey', 'chatGPTModel', 'postBoilerplate'], async (storageData) => {
       if (chrome.runtime.lastError) {
         console.error("Error retrieving settings from chrome.storage:", chrome.runtime.lastError.message);
         sendResponse({ error: "Failed to retrieve settings." });
@@ -126,6 +126,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       }
       const apiKey = storageData.chatGPTApiKey;
       const selectedModel = storageData.chatGPTModel || 'gpt-4.1-2025-04-14'; // Default if not set, updated to gpt-4.1-2025-04-14
+      const boilerplate = storageData.postBoilerplate || `FOLLOW @mikelady to learn how I help busy professionals become semi-pro at BJJ.
+
+Comment "sandbox" below to see how this game fits into the bigger picture in my @sandboxbjj course + community
+📸 @vthavillain
+#bjj #grappling #submissiongrappling #jiujitsu #adcc`; // Default boilerplate if not set
 
       if (!apiKey) {
         console.error("API Key not set in storage.");
@@ -147,15 +152,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       if (result.error) {
         sendResponse({ error: result.error });
       } else {
-        // Fetch boilerplate from chrome.storage.sync
-        chrome.storage.sync.get({
-          boilerplate: `FOLLOW @mikelady to learn how I help busy professionals become semi-pro at BJJ.\n\nComment “sandbox” below to see how this game fits into the bigger picture in my @sandboxbjj course + community\n📸 @vthehoneybadger\n#bjj #grappling #submissiongrappling #jiujitsu #adcc`
-        }, function(items) {
-          const boilerplate = items.boilerplate.replace(/Jiu-Jitsu/gi, 'BJJ').replace(/Jujitsu/gi, 'BJJ');
-          sendResponse({
-            transformed: result.transformed,
-            boilerplate: boilerplate.trim()
-          });
+        // Use the configurable boilerplate and ensure BJJ replacements
+        const processedBoilerplate = boilerplate.replace(/Jiu-Jitsu/gi, 'BJJ').replace(/Jujitsu/gi, 'BJJ');
+
+        sendResponse({
+          transformed: result.transformed,
+          boilerplate: processedBoilerplate.trim()
         });
       }
     });

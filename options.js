@@ -6,7 +6,7 @@ function save_options() {
   chrome.storage.sync.set({
     chatGPTApiKey: apiKey,
     chatGPTModel: model,
-    boilerplate: boilerplate
+    postBoilerplate: boilerplate
   }, function() {
     // Update status to let user know options were saved.
     const status = document.getElementById('status');
@@ -30,7 +30,11 @@ function restore_options() {
   chrome.storage.sync.get({
     chatGPTApiKey: '', // Default to an empty string if not set
     chatGPTModel: 'gpt-4o', // Default model updated to gpt-4o
-    boilerplate: `FOLLOW @mikelady to learn how I help busy professionals become semi-pro at BJJ.\n\nComment “sandbox” below to see how this game fits into the bigger picture in my @sandboxbjj course + community\n📸 @vthehoneybadger\n#bjj #grappling #submissiongrappling #jiujitsu #adcc`
+    postBoilerplate: `FOLLOW @mikelady to learn how I help busy professionals become semi-pro at BJJ.
+
+Comment "sandbox" below to see how this game fits into the bigger picture in my @sandboxbjj course + community
+📸 @vthavillain
+#bjj #grappling #submissiongrappling #jiujitsu #adcc` // Default boilerplate
   }, function(items) {
     if (chrome.runtime.lastError) {
       const status = document.getElementById('status');
@@ -40,7 +44,7 @@ function restore_options() {
     }
     document.getElementById('apiKey').value = items.chatGPTApiKey;
     document.getElementById('chatGPTModel').value = items.chatGPTModel;
-    document.getElementById('boilerplate').value = items.boilerplate;
+    document.getElementById('boilerplate').value = items.postBoilerplate;
   });
 }
 
